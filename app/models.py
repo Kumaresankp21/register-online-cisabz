@@ -18,6 +18,7 @@ class Registration(models.Model):
         ('Online', 'Online'),
         ('Offline', 'Offline'),
     ]
+
     # Participant Details
     member_id = models.CharField(max_length=20, null=True, blank=True)  # Unique member ID (Optional)
     name = models.CharField(max_length=100, null=True, blank=True)  # Participant's name (Optional)
@@ -26,6 +27,9 @@ class Registration(models.Model):
     phone = models.CharField(max_length=15, null=True, blank=True)  # Phone number (Optional)
     email = models.EmailField(null=True, blank=True)  # Email address (Optional)
     payment_mode = models.CharField(max_length=10, choices=PAYMENT_MODE_CHOICES, null=True, blank=True)  # Payment mode (Optional)
+
+    # Payment Status
+    payment_completed = models.BooleanField(default=False)  # Payment status (Default: False)
 
     # Paper Submission
     paper_title = models.CharField(max_length=255, null=True, blank=True)  # Paper title (Optional)
@@ -48,6 +52,7 @@ class Registration(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.college})'
+
     
 class RegistrationStatus(models.Model):
     is_open = models.BooleanField(default=True)

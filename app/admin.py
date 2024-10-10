@@ -46,7 +46,7 @@ class RegistrationResource(resources.ModelResource):
     )
     payment_mode = fields.Field(
         column_name='payment_mode',
-        attribute='payment_mode'  # Add payment_mode here
+        attribute='payment_mode'
     )
 
     class Meta:
@@ -54,28 +54,38 @@ class RegistrationResource(resources.ModelResource):
         fields = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
         )
         export_order = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
         )
 
 class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
     resource_class = RegistrationResource
     
     # Specify fields to display in the list view
-    list_display = ('name', 'college', 'department', 'email', 'phone', 'payment_mode')  # Include payment_mode
+    list_display = ('member_id', 'name', 'college', 'department', 'email', 'phone', 'payment_mode', 'payment_completed')
+    
+    # Make payment_completed editable in the list view
+    list_editable = ('payment_completed',)
     
     # Add custom filters for technical and non-technical events
     list_filter = (TechnicalEventFilter, NonTechnicalEventFilter)
     
     # Display fields for better searching
-    search_fields = ('name', 'college', 'email')
+    search_fields = ('member_id', 'name', 'college', 'email')
 
     # Use filter_horizontal to make selecting many-to-many fields easier in forms
     filter_horizontal = ('technical_events', 'non_technical_events')
+
+    # Specify fields to edit in the form view
+    fields = (
+        'member_id', 'name', 'college', 'department', 'phone', 'email', 
+        'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
+        'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
+    )
 
 @admin.register(RegistrationStatus)
 class RegistrationStatusAdmin(admin.ModelAdmin):
