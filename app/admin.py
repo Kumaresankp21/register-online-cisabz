@@ -86,6 +86,9 @@ class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
         'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
         'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
     )
+    
+    # Add pagination
+    list_per_page = 20  # Display 20 registrations per page
 
 @admin.register(RegistrationStatus)
 class RegistrationStatusAdmin(admin.ModelAdmin):
