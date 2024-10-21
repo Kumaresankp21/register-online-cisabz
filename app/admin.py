@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export import resources, fields
-from import_export.admin import ExportMixin
+from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ManyToManyWidget
 from .models import Registration, Event, RegistrationStatus
 
@@ -54,25 +54,26 @@ class RegistrationResource(resources.ModelResource):
         fields = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'
         )
         export_order = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'
         )
 
-class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
+# Add ImportExportModelAdmin to enable both import and export functionality
+class RegistrationAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = RegistrationResource
     
     # Specify fields to display in the list view
     list_display = (
         'member_id', 'name', 'college', 'department', 'email', 
-        'phone', 'payment_mode', 'payment_completed', 'attendance'  # Added 'attendance'
+        'phone', 'payment_mode', 'payment_completed', 'attendance'
     )
     
     # Make payment_completed and attendance editable in the list view
-    list_editable = ('payment_completed', 'attendance')  # Added 'attendance' here
+    list_editable = ('payment_completed', 'attendance')
     
     # Add custom filters for technical and non-technical events
     list_filter = (TechnicalEventFilter, NonTechnicalEventFilter)
@@ -87,16 +88,16 @@ class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
     fields = (
         'member_id', 'name', 'college', 'department', 'phone', 'email', 
         'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-        'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
+        'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'
     )
     
     # Add pagination
-    list_per_page = 20  # Display 20 registrations per page
+    list_per_page = 20
 
 @admin.register(RegistrationStatus)
 class RegistrationStatusAdmin(admin.ModelAdmin):
-    list_display = ('is_open',)  # Display the is_open field in the admin list view
-    list_filter = ('is_open',)    # Add a filter option for is_open
+    list_display = ('is_open',)
+    list_filter = ('is_open',)
     search_fields = ('is_open',)
 
 # Register the models and the admin classes

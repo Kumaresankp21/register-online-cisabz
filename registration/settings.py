@@ -86,17 +86,17 @@ DATABASES = {
 
 # DATABASES = {
 #     'default': dj_database_url.parse(
-#         'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:5432/railway'
+#         'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:39099/railway'
 #     )
 # }
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'registration',  # replace with your database name
-#         'USER': 'cisabz24',
-#         'PASSWORD': 'kings123',
-#         'HOST': 'cisabz24.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',  # Default MySQL port
+#         'ENGINE': 'django.db.backends.mysql',  # MySQL database backend
+#         'NAME': 'cisabz24$default',             # Use your chosen database name here
+#         'USER': 'cisabz24',                     # Your MySQL username
+#         'PASSWORD': 'kings123',                 # Your MySQL password
+#         'HOST': 'cisabz24.mysql.pythonanywhere-services.com',  # MySQL host
+#         'PORT': '3306',                         # Default MySQL port
 #     }
 # }
 
