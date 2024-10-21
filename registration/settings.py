@@ -77,19 +77,28 @@ WSGI_APPLICATION = 'registration.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:5432/railway'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:5432/railway'
+#     )
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'registration',  # replace with your database name
+#         'USER': 'cisabz24',
+#         'PASSWORD': 'kings123',
+#         'HOST': 'cisabz24.mysql.pythonanywhere-services.com',
+#         'PORT': '3306',  # Default MySQL port
+#     }
+# }
 
 
 
