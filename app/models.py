@@ -50,8 +50,12 @@ class Registration(models.Model):
     payment_link = models.URLField(null=True, blank=True)  # Payment submission link (Optional)
     transaction_number = models.CharField(max_length=100, null=True, blank=True)  # Transaction number (Optional)
 
+    # Attendance
+    attendance = models.BooleanField(default=False)  # Attendance status (Default: False)
+
     def __str__(self):
         return f'{self.name} ({self.college})'
+
 
     
 class RegistrationStatus(models.Model):

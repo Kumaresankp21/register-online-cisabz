@@ -54,22 +54,25 @@ class RegistrationResource(resources.ModelResource):
         fields = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
         )
         export_order = (
             'id', 'member_id', 'name', 'college', 'department', 'phone', 'email', 
             'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
+            'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
         )
 
 class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
     resource_class = RegistrationResource
     
     # Specify fields to display in the list view
-    list_display = ('member_id', 'name', 'college', 'department', 'email', 'phone', 'payment_mode', 'payment_completed')
+    list_display = (
+        'member_id', 'name', 'college', 'department', 'email', 
+        'phone', 'payment_mode', 'payment_completed', 'attendance'  # Added 'attendance'
+    )
     
-    # Make payment_completed editable in the list view
-    list_editable = ('payment_completed',)
+    # Make payment_completed and attendance editable in the list view
+    list_editable = ('payment_completed', 'attendance')  # Added 'attendance' here
     
     # Add custom filters for technical and non-technical events
     list_filter = (TechnicalEventFilter, NonTechnicalEventFilter)
@@ -84,7 +87,7 @@ class RegistrationAdmin(ExportMixin, admin.ModelAdmin):
     fields = (
         'member_id', 'name', 'college', 'department', 'phone', 'email', 
         'paper_title', 'paper_abstract', 'technical_events', 'non_technical_events', 
-        'payment_mode', 'payment_link', 'transaction_number', 'payment_completed'
+        'payment_mode', 'payment_link', 'transaction_number', 'payment_completed', 'attendance'  # Added 'attendance'
     )
     
     # Add pagination

@@ -1,3 +1,5 @@
 django
 gunicorn
 django-import-export
+dj-database-url
+psycopg2
