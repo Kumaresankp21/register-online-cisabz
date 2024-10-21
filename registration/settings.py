@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'registration.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:39099/railway?sslmode=require'
+        'postgresql://postgres:DofmWlSXFGKiMvfIQbfqMJWADtEMLxeH@junction.proxy.rlwy.net:5432/railway'
     )
 }
 
